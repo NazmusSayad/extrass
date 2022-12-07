@@ -1,15 +1,30 @@
 {
 	"compilerOptions": {
-		"target": "es6",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"skipLibCheck": true,
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "src",
 		"declaration": true,
+		"esModuleInterop": true,
 		"inlineSourceMap": false,
-		"strict": true,
+		"lib": [
+			"esnext"
+		],
+		"listEmittedFiles": false,
+		"listFiles": false,
+		"moduleResolution": "node",
+		"noFallthroughCasesInSwitch": true,
 		"pretty": true,
-		"removeComments": true
+		"resolveJsonModule": true,
+		"rootDir": "src",
+		"skipLibCheck": true,
+		"strict": true,
+		"traceResolution": false
 	},
+	"compileOnSave": false,
+	"exclude": [
+		"node_modules",
+		"dist"
+	],
 	"include": [
 		"src"
 	]
