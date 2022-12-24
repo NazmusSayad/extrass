@@ -1,44 +1,17 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
+import getBodyMethod, { GetBodyMethod } from './getBody.js'
+import successMethod, { SussessMethod } from './success.js'
+import pingController from './ping.js'
 
-export type ConfigOptions = {
-  ping?: string
-}
-
-type FieldsType = (string | string[])[]
 declare global {
   namespace Express {
     export interface Response {
-      success: Function
+      success: SussessMethod
     }
     export interface Request {
-      getBody(this: Request, ...fields: FieldsType): any
+      getBody: GetBodyMethod
     }
   }
-}
-
-const successMethod = function (this: Response, data: any, code = 200) {
-  const resData = { status: 'success', data }
-  this.status(code).json(code === 204 ? null : resData)
-  return resData
-}
-
-const getBodyMethod = function (this: Request, ...fields: FieldsType) {
-  const newObj: any = {}
-  const fieldsFlat: string[] = fields
-    .flat()
-    .map((field) => field.split(' '))
-    .flat()
-    .filter((field) => field.trim())
-
-  for (let field of fieldsFlat) {
-    const value = this.body[field]
-    if (value !== undefined) newObj[field] = value
-  }
-  return newObj
-}
-
-const pingController = (req: Request, res: Response) => {
-  res.status(200).end()
 }
 
 export default ({ ping = '' }: ConfigOptions = {}): Express => {
@@ -50,4 +23,9 @@ export default ({ ping = '' }: ConfigOptions = {}): Express => {
   if (ping) app.use(ping, pingController)
 
   return app
+}
+
+export { GetBodyMethod, SussessMethod }
+export type ConfigOptions = {
+  ping?: string
 }
