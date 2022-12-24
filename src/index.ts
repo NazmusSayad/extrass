@@ -1,8 +1,11 @@
 import express, { Express } from 'express'
+import { handleError } from 'req-error'
+
 import getBodyMethod, { GetBodyMethod } from './getBody.js'
 import successMethod, { SussessMethod } from './success.js'
 import pingController from './ping.js'
 
+import 'req-error/global'
 declare global {
   namespace Express {
     export interface Response {
@@ -11,6 +14,10 @@ declare global {
     export interface Request {
       getBody: GetBodyMethod
     }
+  }
+
+  export interface Express {
+    test: SussessMethod
   }
 }
 
@@ -25,7 +32,7 @@ export default ({ ping = '' }: ConfigOptions = {}): Express => {
   return app
 }
 
-export { GetBodyMethod, SussessMethod }
+export { GetBodyMethod, SussessMethod, handleError }
 export type ConfigOptions = {
   ping?: string
 }

@@ -5,6 +5,7 @@
 		"pretty": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"moduleResolution": "node",
 		"esModuleInterop": true
 	},
 	"compileOnSave": false,
