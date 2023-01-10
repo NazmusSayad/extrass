@@ -1,8 +1,8 @@
 import ReqError from 'req-error'
 
 const messages = {
-  type: '{$key} should be {$type}',
-  required: '{$key} is missing',
+  type: `Expected '{$key}' should be '{$type}'`,
+  required: `Value for '{$key}' is required'`,
 }
 
 const throwRequiredMessage = (key: string) => {
