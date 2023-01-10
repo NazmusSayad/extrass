@@ -1,4 +1,4 @@
-import express, { Express } from 'express'
+import { Express } from 'express'
 import { handleError } from 'req-error'
 
 import getBodyMethod, { GetBodyMethod } from './getBody.js'
@@ -15,24 +15,22 @@ declare global {
       getBody: GetBodyMethod
     }
   }
-
-  export interface Express {
-    test: SussessMethod
-  }
 }
 
-export default ({ ping = '' }: ConfigOptions = {}): Express => {
-  const app = express()
-
+export { GetBodyMethod, SussessMethod }
+export default (
+  app: Express,
+  { ping, errorMsgs, formatJSON }: ConfigOptions = {}
+) => {
   app.response.success = successMethod
   app.request.getBody = getBodyMethod
 
-  if (ping) app.use(ping, pingController)
-
-  return app
+  if (ping && typeof ping === 'string') app.use(ping, pingController)
+  handleError(app, errorMsgs, formatJSON)
 }
 
-export { GetBodyMethod, SussessMethod, handleError }
 export type ConfigOptions = {
   ping?: string
+  errorMsgs?: Parameters<typeof handleError>[1]
+  formatJSON?: Parameters<typeof handleError>[2]
 }
