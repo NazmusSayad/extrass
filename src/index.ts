@@ -18,10 +18,10 @@ declare global {
 }
 
 export {
-  default as typeCheck,
-  TypeCheckInput,
+  default as checkType,
+  CheckTypeInput,
   AllowedTypes,
-} from './typeCheck.js'
+} from './checkType.js'
 export default (
   app: Express,
   { ping, errorMsgs, formatJSON }: ConfigOptions = {}

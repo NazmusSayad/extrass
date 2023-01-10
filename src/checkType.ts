@@ -6,7 +6,7 @@ export type AllowedTypes =
   | ArrayConstructor
   | BooleanConstructor
 
-export type TypeCheckInput =
+export type CheckTypeInput =
   | {
       [index: string]: any
       type: AllowedTypes
@@ -21,7 +21,7 @@ export type TypeCheckInput =
       required: boolean
     }
 
-const check = (arg: TypeCheckInput) => {
+const check = (arg: CheckTypeInput) => {
   const entries = Object.entries(arg).filter(
     ([key]) => !(key === 'type' || key === 'required')
   )
