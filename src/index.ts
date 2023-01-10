@@ -17,7 +17,11 @@ declare global {
   }
 }
 
-export { GetBodyMethod, SussessMethod }
+export {
+  default as typeCheck,
+  TypeCheckInput,
+  AllowedTypes,
+} from './typeCheck.js'
 export default (
   app: Express,
   { ping, errorMsgs, formatJSON }: ConfigOptions = {}
@@ -29,6 +33,7 @@ export default (
   handleError(app, errorMsgs, formatJSON)
 }
 
+export { GetBodyMethod, SussessMethod }
 export type ConfigOptions = {
   ping?: string
   errorMsgs?: Parameters<typeof handleError>[1]
