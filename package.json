@@ -1,36 +1,38 @@
 {
-  "name": "express-master",
-  "version": "3.0.6",
-  "description": "",
-  "main": "./dist-mjs/index.js",
-  "scripts": {
-    "dev": "npm-ez dev",
-    "build": "npm-ez build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NazmusSayad/express-master.git"
-  },
-  "author": "NazmusSayad",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NazmusSayad/express-master/issues"
-  },
-  "homepage": "https://github.com/NazmusSayad/express-master#readme",
-  "devDependencies": {
-    "@types/express": "latest",
-    "npm-ez": "^2.0.2",
-    "typescript": "^4.9.3"
-  },
-  "peerDependencies": {
-    "express": "*",
-    "req-error": "*"
-  },
-  "types": "./dist-mjs/index.d.js",
-  "exports": {
-    ".": {
-      "require": "./dist-cjs/index.js",
-      "import": "./dist-mjs/index.js"
-    }
-  }
+	"name": "express-master",
+	"version": "3.0.8",
+	"description": "",
+	"scripts": {
+		"dev": "npm-ez dev",
+		"build": "npm-ez build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NazmusSayad/express-master.git"
+	},
+	"author": "NazmusSayad",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/NazmusSayad/express-master/issues"
+	},
+	"homepage": "https://github.com/NazmusSayad/express-master#readme",
+	"devDependencies": {
+		"@types/express": "latest",
+		"npm-ez": "^2.0.2",
+		"typescript": "^4.9.3",
+		"req-error": "*"
+	},
+	"peerDependencies": {
+		"express": "*",
+		"req-error": "*"
+	},
+	"main": "./dist-cjs/index.cjs",
+	"module": "./dist-mjs/index.mjs",
+	"exports": {
+		".": {
+			"require": "./dist-cjs/index.cjs",
+			"import": "./dist-mjs/index.mjs",
+			"types": "./dist-mjs/index.mts"
+		}
+	}
 }

@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "ES6",
+		"target": "es6",
 		"allowJs": true,
 		"declaration": true,
 		"pretty": true,
@@ -8,7 +8,9 @@
 		"strict": true,
 		"moduleResolution": "node",
 		"esModuleInterop": true,
-		"noImplicitAny": false
+		"noImplicitAny": false,
+		"inlineSourceMap": false,
+		"removeComments": true
 	},
 	"compileOnSave": false,
 	"include": [
