@@ -1,6 +1,6 @@
 {
   "name": "express-master",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "",
   "main": "./dist-mjs/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/NazmusSayad/express-master#readme",
   "devDependencies": {
     "@types/express": "latest",
-    "npm-ez": "^0.0.18",
+    "npm-ez": "^2.0.2",
     "typescript": "^4.9.3"
   },
   "peerDependencies": {
