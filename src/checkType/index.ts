@@ -1,7 +1,7 @@
 import checkItem, { AllowedTypes } from './checkItem.js'
 const DEFAULT_MESSAGES = {
   typeError: `Expected '{$key}' should be '{$type}'`,
-  requiredError: `Value for '{$key}' is required'`,
+  requiredError: `Value for '{$key}' is required`,
 }
 
 type DefaultMessages = Partial<typeof DEFAULT_MESSAGES> & {

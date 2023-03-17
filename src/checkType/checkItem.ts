@@ -36,7 +36,11 @@ export default (object: CheckTypeInput, conf: CheckOptions) => {
       )
     }
 
-    if (conf.required === true && (value == null || value === '')) {
+    if (conf.required === false && value === undefined) return
+    if (
+      conf.required === true &&
+      (value == null || value === '' || Number.isNaN(value))
+    ) {
       throwRequiredError()
     }
 
