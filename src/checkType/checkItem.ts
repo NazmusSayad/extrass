@@ -27,17 +27,19 @@ const checkSingleItem = (key: string, value, conf: TypeCheckOptions) => {
     )
   }
 
-  const isResolved = checkValueType(conf.type, value, throwTypeError)
-  if (isResolved === false && utils.isArray(conf.type)) {
-    /* Just check if the value is an array */
-    checkValueType(Array, value, throwTypeError)
-
-    /* Check every element of the value */
-    const childType = conf.type[0]
-    value.forEach((value) => {
-      checkValueType(childType, value, throwTypeError, true)
-    })
+  /* If type is not an array */
+  if (!utils.isArray(conf.type)) {
+    return checkValueType(conf.type, value, throwTypeError)
   }
+
+  /* Just check if the value is an array */
+  checkValueType(Array, value, throwTypeError)
+
+  /* Check every element of the value */
+  const childType = conf.type[0]
+  value.forEach((value) => {
+    checkValueType(childType, value, throwTypeError, true)
+  })
 }
 
 const checkValueType = (type, value, typeError: Function, isChild = false) => {
@@ -59,6 +61,4 @@ const checkValueType = (type, value, typeError: Function, isChild = false) => {
       if (utils.isBoolean(value)) return
       typeError(isChild ? 'array of boolean' : 'boolean')
   }
-
-  return false
 }
