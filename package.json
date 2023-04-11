@@ -6,7 +6,7 @@
     "dev": "npm-ez dev",
     "build": "npm-ez build"
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/NazmusSayad/express-master.git"
   },
