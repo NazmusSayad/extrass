@@ -1,73 +1,64 @@
-export interface CheckOptions {
-  type: AllowedTypes
-  required: boolean
-  typeError: string
-  requiredError: string
-  statusCode?: number
-}
-
-export type AllowedTypes =
-  | StringConstructor
-  | NumberConstructor
-  | ArrayConstructor
-  | BooleanConstructor
-
-export interface CheckTypeInput {
+import * as utils from '../utils'
+import { TypeCheckOptions } from '../types'
+interface AnyObject {
   [index: string]: unknown
 }
 
-export default (object: CheckTypeInput, conf: CheckOptions) => {
-  const entries = Object.entries(object).filter(
-    ([key]) => !(key === 'type' || key === 'required')
-  )
+export default (object: AnyObject, conf: TypeCheckOptions) => {
+  for (let key in object) {
+    checkSingleItem(key, object[key], conf)
+  }
+}
 
-  entries.forEach(([key, value]) => {
-    const throwRequiredError = () => {
-      throw new ReqError(
-        conf.requiredError.replace(/{\$key}/gim, key),
-        conf.statusCode
-      )
-    }
+const checkSingleItem = (key: string, value, conf: TypeCheckOptions) => {
+  if (conf.required === false && value === undefined) return
+  if (conf.required === true && utils.isNotExists(value)) {
+    throw new ReqError(
+      conf.requiredError.replace(/{\$key}/gim, key),
+      conf.statusCode
+    )
+  }
 
-    const throwTypeError = (type) => {
-      throw new ReqError(
-        conf.typeError.replace(/{\$key}/gim, key).replace(/{\$type}/gim, type),
-        conf.statusCode
-      )
-    }
+  // Check value type
+  const throwTypeError = (type: string) => {
+    throw new ReqError(
+      conf.typeError.replace(/{\$key}/gim, key).replace(/{\$type}/gim, type),
+      conf.statusCode
+    )
+  }
 
-    if (conf.required === false && value === undefined) return
-    if (
-      conf.required === true &&
-      (value == null || value === '' || Number.isNaN(value))
-    ) {
-      throwRequiredError()
-    }
+  const isResolved = checkValueType(conf.type, value, throwTypeError)
+  if (isResolved === false && utils.isArray(conf.type)) {
+    /* Just check if the value is an array */
+    checkValueType(Array, value, throwTypeError)
 
-    switch (conf.type) {
-      case String:
-        if (!(typeof value === 'string' || value instanceof String)) {
-          throwTypeError('string')
-        }
-        break
+    /* Check every element of the value */
+    const childType = conf.type[0]
+    value.forEach((value) => {
+      checkValueType(childType, value, throwTypeError, true)
+    })
+  }
+}
 
-      case Number:
-        if (!(typeof value === 'number' || value instanceof Number)) {
-          throwTypeError('number')
-        }
-        break
+const checkValueType = (type, value, typeError: Function, isChild = false) => {
+  switch (type) {
+    case Array:
+      if (utils.isArray(value)) return
+      /* array isn't availabe in child mode */
+      typeError('array')
 
-      case Boolean:
-        if (!(typeof value === 'boolean' || value instanceof Boolean)) {
-          throwTypeError('boolean')
-        }
-        break
+    case String:
+      if (utils.isString(value)) return
+      typeError(isChild ? 'array of string' : 'string')
 
-      case Array:
-        if (!(Array.isArray(value) || value instanceof Array)) {
-          throwTypeError('array')
-        }
-        break
-    }
-  })
+    case Number:
+      if (utils.isNumber(value)) return
+      typeError(isChild ? 'array of number' : 'number')
+
+    case Boolean:
+      if (utils.isBoolean(value)) return
+      typeError(isChild ? 'array of boolean' : 'boolean')
+  }
+
+  return false
 }

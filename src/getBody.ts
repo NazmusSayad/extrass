@@ -1,4 +1,5 @@
 import { Request } from 'express'
+import { GetBodyMethod } from './types'
 
 const getBodyMethod: GetBodyMethod = function (this: Request, ...fields) {
   const newObj: any = {}
@@ -11,6 +12,3 @@ const getBodyMethod: GetBodyMethod = function (this: Request, ...fields) {
 }
 
 export default getBodyMethod
-export type GetBodyMethod = <T extends string[]>(
-  ...fields: T
-) => Record<T[number], any>

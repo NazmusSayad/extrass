@@ -1,15 +1,18 @@
 import { Express } from 'express'
 import { handleError } from 'req-error'
+import * as utils from './utils'
 
-import getBodyMethod, { GetBodyMethod } from './getBody.js'
-import successMethod, { SussessMethod } from './success.js'
-import pingController from './ping.js'
+import getBodyMethod from './getBody'
+import successMethod from './success'
+import pingController from './ping'
+import { GetBodyMethod, MasterOptions, DefaultSussessMethod } from './types'
 
 import 'req-error/global'
+import checkType from './checkType/index.js'
 declare global {
   namespace Express {
     export interface Response {
-      success: SussessMethod
+      success: DefaultSussessMethod
     }
     export interface Request {
       getBody: GetBodyMethod
@@ -17,21 +20,21 @@ declare global {
   }
 }
 
-export default (
-  app: Express,
-  { ping, errorMsgs, formatJSON }: ConfigOptions = {}
-) => {
-  app.response.success = successMethod
-  app.request.getBody = getBodyMethod
-
-  if (ping && typeof ping === 'string') app.use(ping, pingController)
-  handleError(app, errorMsgs, formatJSON)
-}
-
+export * from './types'
 export { default as checkType } from './checkType/index.js'
-export { GetBodyMethod, SussessMethod }
-export type ConfigOptions = {
-  ping?: string
-  errorMsgs?: Parameters<typeof handleError>[1]
-  formatJSON?: Parameters<typeof handleError>[2]
+
+export default (app: Express, options: MasterOptions = {}) => {
+  // Add methods
+  app.request.getBody = getBodyMethod
+  app.response.success = utils.isFunction(options.successMethod)
+    ? (options.successMethod as DefaultSussessMethod)
+    : successMethod
+
+  // Add ping route
+  if (options.ping && typeof options.ping === 'string') {
+    app.use(options.ping, pingController)
+  }
+
+  // Handle errors
+  handleError(app, options.errorMessages, options.formatError)
 }

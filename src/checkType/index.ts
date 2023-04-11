@@ -1,15 +1,9 @@
-import checkItem, { AllowedTypes } from './checkItem.js'
-const DEFAULT_MESSAGES = {
+import checkItem from './checkItem.js'
+import { AllowedTypes, CheckFunction, TypeCheckMessages } from '../types.js'
+
+export const DEFAULT_MESSAGES = {
   typeError: `Expected '{$key}' should be '{$type}'`,
   requiredError: `Value for '{$key}' is required`,
-}
-
-type DefaultMessages = Partial<typeof DEFAULT_MESSAGES> & {
-  statusCode?: number
-}
-
-interface CheckFunction {
-  (object: { [index: string]: unknown }, options?: DefaultMessages): void
 }
 
 class Check {
@@ -18,19 +12,18 @@ class Check {
     this.#required = required
   }
 
-  #getOptions(type: AllowedTypes, config: DefaultMessages) {
+  #getOptions(config: TypeCheckMessages) {
     return {
       ...DEFAULT_MESSAGES,
       ...config,
 
       required: this.#required,
-      type,
     }
   }
 
   #createTypeChecker(type: AllowedTypes): CheckFunction {
     return (object, options = {}) => {
-      checkItem(object, this.#getOptions(type, options))
+      checkItem(object, { type, ...this.#getOptions(options) })
     }
   }
 
@@ -38,6 +31,9 @@ class Check {
   number = this.#createTypeChecker(Number)
   boolean = this.#createTypeChecker(Boolean)
   array = this.#createTypeChecker(Array)
+  arrayOfString = this.#createTypeChecker([String])
+  arrayOfNumber = this.#createTypeChecker([Number])
+  arrayOfBoolean = this.#createTypeChecker([Boolean])
 }
 
 class RequiredCheck extends Check {
@@ -45,7 +41,7 @@ class RequiredCheck extends Check {
     return new Check(false)
   }
 
-  configure(errorMessages: DefaultMessages) {
+  configure(errorMessages: TypeCheckMessages) {
     Object.assign(DEFAULT_MESSAGES, errorMessages)
   }
 }
