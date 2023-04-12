@@ -1,6 +1,6 @@
 # express-master
 
-This package helps you to cache your files with service worker.
+Packed with some express utils
 
 <a href="https://npmjs.com/package/express-master">
   <img src="https://img.shields.io/npm/v/express-master" alt="npm package"> 
