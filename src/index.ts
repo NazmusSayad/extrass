@@ -19,6 +19,7 @@ declare global {
 }
 
 export * from './types'
+export * from 'req-error'
 
 export default (app: Express, options: MasterOptions = {}) => {
   // Add methods
