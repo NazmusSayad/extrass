@@ -1,13 +1,27 @@
-import { Express } from 'express'
-import { handleError } from 'req-error'
+import { MessageInput, ReqError } from 'req-error'
+try {
+  global.ReqError = ReqError
+} catch {
+  try {
+    globalThis.ReqError = ReqError
+  } catch {
+    console.log('Unable to set ReqError')
+  }
+}
 
+// Main...
+import { Express } from 'express'
 import getBodyMethod from './getBody'
 import successMethod from './success'
 import pingController from './ping'
 import { GetBodyMethod, MasterOptions, DefaultSussessMethod } from './types'
+import handleError from './handleError'
 
-import 'req-error/global'
 declare global {
+  var ReqError: {
+    new (message: MessageInput, statusCode?: number): ReqError
+  }
+
   namespace Express {
     export interface Response {
       success: DefaultSussessMethod
@@ -20,7 +34,6 @@ declare global {
 
 export * from './types'
 export * from 'req-error'
-
 export default (app: Express, options: MasterOptions = {}) => {
   // Add methods
   app.request.getBody = getBodyMethod

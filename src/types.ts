@@ -1,4 +1,4 @@
-import { handleError } from 'req-error'
+import handleError from "./handleError";
 
 export type GetBodyMethod = <T extends string[]>(
   ...props: T
