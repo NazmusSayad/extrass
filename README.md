@@ -1,9 +1,9 @@
-# express-master
+# extrass
 
 Packed with some express utils
 
-<a href="https://npmjs.com/package/express-master">
-  <img src="https://img.shields.io/npm/v/express-master" alt="npm package"> 
+<a href="https://npmjs.com/package/extrass">
+  <img src="https://img.shields.io/npm/v/extrass" alt="npm package"> 
 </a>
 
 ## Installation
@@ -11,19 +11,19 @@ Packed with some express utils
 - with npm
 
 ```shell
-npm i express-master req-error
+npm i extrass
 ```
 
 - with yarn
 
 ```shell
-yarn add express-master req-error
+yarn add extrass
 ```
 
 - with pnpm
 
 ```shell
-pnpm add express-master req-error
+pnpm add extrass
 ```
 
 ## Usage
@@ -32,14 +32,15 @@ pnpm add express-master req-error
 
 ```js
 const express = require('express')
-const master = require('express-master').default
-/* After importing this, a class named "ReqError" will be global 
+const extrass = require('extrass')
+/* After importing this, a class named "ReqError" will be global
+and everything those are exported from req-error package is also exported here
 check https://www.npmjs.com/package/req-error for that
 */
 
 const app = express()
 
-master(app, {
+extrass(app, {
   // If any strings provided that will be the route for pinging the server
   ping: '/ping',
 
@@ -85,3 +86,7 @@ master(app, {
 
 app.listen(/* ... */)
 ```
+
+## Must watch:
+
+[Checkout 'req-error'](https://www.npmjs.com/package/req-error)
