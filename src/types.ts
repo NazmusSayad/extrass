@@ -8,9 +8,9 @@ export type DefaultSuccessMethod = <Data extends unknown>(
   data: Data
 ) => { status: string; data: Data }
 
-export type DefaultErrorMethod = <Message extends unknown>(
-  message: Message
-) => { status: string; message: Message }
+export type DefaultErrorMethod = <Info extends { [i: string]: unknown }>(
+  message: Info
+) => { status: string } & Info
 
 export interface MasterOptions {
   ping?: string

@@ -16,7 +16,7 @@ export const errorMethod: DefaultErrorMethod = function (
 ) {
   if (!this._statusCodeInitialized || this.statusCode < 400) this.status(400)
   const status = this.statusCode < 500 ? 'fail' : 'error'
-  const resData = { status, message }
+  const resData = { status, ...message }
   this.json(resData)
   return resData
 }
