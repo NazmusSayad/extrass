@@ -1,24 +1,24 @@
 import {
   GetBodyMethod,
-  DefaultSuccessMethod,
   DefaultErrorMethod,
+  DefaultSuccessMethod,
 } from './types'
-import { r as rype } from 'rype'
 import { ReqError as RequestError } from 'req-error'
+import extrass from './extrass'
 
 try {
-  globalThis.r = rype
-  globalThis.ReqError = RequestError
+  // global.r = rype
+  global.ReqError = RequestError
 } catch {
   try {
-    global.r = rype
-    global.ReqError = RequestError
+    // globalThis.r = rype
+    globalThis.ReqError = RequestError
   } catch {}
 }
 
 declare global {
+  // var r: typeof rype
   var ReqError: typeof RequestError
-  var r: typeof rype
 
   namespace Express {
     export interface Response {
@@ -32,7 +32,6 @@ declare global {
   }
 }
 
-export * from 'rype'
-export * from 'req-error'
-export { default } from './extrass'
+export default extrass
 export * from './types'
+export * from 'req-error'
