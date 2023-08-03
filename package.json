@@ -1,6 +1,6 @@
 {
   "name": "extrass",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "npm-ez dev",
@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "@types/express": "latest",
-    "npm-ez": "^2.0.2",
-    "typescript": "^4.9.3"
+    "npm-ez": "^2.0.6",
+    "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "express": "*"

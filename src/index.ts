@@ -3,7 +3,7 @@ import {
   DefaultSuccessMethod,
   DefaultErrorMethod,
 } from './types'
-// import { r as rype } from 'rype'
+import { r as rype } from 'rype'
 import { ReqError as RequestError } from 'req-error'
 
 try {
@@ -32,7 +32,7 @@ declare global {
   }
 }
 
-export * from './types'
-// export * from 'rype'
+export * from 'rype'
 export * from 'req-error'
 export { default } from './extrass'
+export * from './types'
