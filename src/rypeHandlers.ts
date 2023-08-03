@@ -1,5 +1,5 @@
-import { RypeError, RypeTypeError, RypeRequiredError } from 'rype'
 import { GetErrorInfoHandler } from 'req-error'
+import { RypeError, RypeTypeError, RypeRequiredError } from 'rype'
 
 const rypeHandlers: GetErrorInfoHandler[] = [
   function (err) {

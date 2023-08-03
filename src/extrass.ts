@@ -3,6 +3,7 @@ import pingController from './ping'
 import getBodyMethod from './getBody'
 import handleError from './handleError'
 import { MasterOptions } from './types'
+import rypeHandlers from './rypeHandlers'
 import { successMethod, errorMethod } from './customMethod'
 
 export default (app: Express, options: MasterOptions = {}) => {
@@ -22,6 +23,6 @@ export default (app: Express, options: MasterOptions = {}) => {
 
   handleError(app, {
     messages: options.errorMessages,
-    handlers: options.errorHandlers,
+    handlers: [...(options.errorHandlers || []), ...rypeHandlers],
   })
 }

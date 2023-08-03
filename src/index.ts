@@ -5,19 +5,20 @@ import {
 } from './types'
 import { ReqError as RequestError } from 'req-error'
 import extrass from './extrass'
+import rype from 'rype'
 
 try {
-  // global.r = rype
-  global.ReqError = RequestError
+  globalThis.r = rype
+  globalThis.ReqError = RequestError
 } catch {
   try {
-    // globalThis.r = rype
-    globalThis.ReqError = RequestError
+    global.r = rype
+    global.ReqError = RequestError
   } catch {}
 }
 
 declare global {
-  // var r: typeof rype
+  var r: typeof rype
   var ReqError: typeof RequestError
 
   namespace Express {
@@ -32,6 +33,8 @@ declare global {
   }
 }
 
-export default extrass
-export * from './types'
+export * from 'rype'
 export * from 'req-error'
+export default extrass
+
+export * from './types'

@@ -1,6 +1,6 @@
 {
   "name": "extrass",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "scripts": {
     "dev": "npm-ez dev",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/NazmusSayad/express-master#readme",
   "dependencies": {
-    "req-error": "^2.0.1"
+    "req-error": "^2.0.1",
+    "rype": "^0.0.5"
   },
   "devDependencies": {
     "@types/express": "latest",
