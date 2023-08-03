@@ -1,30 +1,30 @@
-import { MessageInput, ReqError } from 'req-error'
+import {
+  GetBodyMethod,
+  DefaultSuccessMethod,
+  DefaultErrorMethod,
+} from './types'
+// import { r as rype } from 'rype'
+import { ReqError as RequestError } from 'req-error'
+
 try {
-  global.ReqError = ReqError
+  globalThis.r = rype
+  globalThis.ReqError = RequestError
 } catch {
   try {
-    globalThis.ReqError = ReqError
-  } catch {
-    console.log('Unable to set ReqError')
-  }
+    global.r = rype
+    global.ReqError = RequestError
+  } catch {}
 }
 
-// Main...
-import { Express } from 'express'
-import getBodyMethod from './getBody'
-import successMethod from './success'
-import pingController from './ping'
-import { GetBodyMethod, MasterOptions, DefaultSussessMethod } from './types'
-import handleError from './handleError'
-
 declare global {
-  var ReqError: {
-    new (message: MessageInput, statusCode?: number): ReqError
-  }
+  var ReqError: typeof RequestError
+  var r: typeof rype
 
   namespace Express {
     export interface Response {
-      success: DefaultSussessMethod
+      error: DefaultErrorMethod
+      success: DefaultSuccessMethod
+      _statusCodeInitialized: boolean
     }
     export interface Request {
       getBody: GetBodyMethod
@@ -33,17 +33,6 @@ declare global {
 }
 
 export * from './types'
+// export * from 'rype'
 export * from 'req-error'
-export default (app: Express, options: MasterOptions = {}) => {
-  // Add methods
-  app.request.getBody = getBodyMethod
-  app.response.success = options.successMethod ?? successMethod
-
-  // Add ping route
-  if (options.ping && typeof options.ping === 'string') {
-    app.use(options.ping, pingController)
-  }
-
-  // Handle errors
-  handleError(app, options.errorMessages, options.formatError)
-}
+export { default } from './extrass'

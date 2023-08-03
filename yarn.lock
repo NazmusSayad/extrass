@@ -3,9 +3,9 @@
 
 
 "@babel/parser@^7.20.7":
-  version "7.22.4"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.4.tgz#a770e98fd785c231af9d93f6459d36770993fb32"
-  integrity sha512-VLLsx06XkEYqBtE5YGPwfSGwfrjnyPP5oiGty3S8pQLFDFLaS8VwWSIxkTXpcvr5zeYLE6+MBNl2npl/YnfofA==
+  version "7.22.7"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.7.tgz#df8cf085ce92ddbdbf668a7f186ce848c9036cae"
+  integrity sha512-7NF8pOkHP5o2vpmGgNGcfAeCvOYhGLyA3Z4eBQkT1RJlWu47n63bCs93QfJ2hIAFCil7L5P2IWhs1oToVgrL0Q==
 
 "@types/body-parser@*":
   version "1.19.2"
@@ -42,6 +42,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/http-errors@*":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-2.0.1.tgz#20172f9578b225f6c7da63446f56d4ce108d5a65"
+  integrity sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ==
+
 "@types/mime@*":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
@@ -53,9 +58,9 @@
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
 "@types/node@*":
-  version "20.2.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.5.tgz#26d295f3570323b2837d322180dfbf1ba156fefb"
-  integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
+  version "20.4.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.6.tgz#b66b66c9bb5d49b199f03399e341c9d6036e9e88"
+  integrity sha512-q0RkvNgMweWWIvSMDiXhflGUKMdIxBo2M2tYM/0kEGDueQByFzK4KZAgu5YHGFNxziTlppNpTIBcqHQAxlfHdA==
 
 "@types/qs@*":
   version "6.9.7"
@@ -76,10 +81,11 @@
     "@types/node" "*"
 
 "@types/serve-static@*":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.15.1.tgz#86b1753f0be4f9a1bee68d459fcda5be4ea52b5d"
-  integrity sha512-NUo5XNiAdULrJENtJXZZ3fHtfMolzZwczzBbnAeBbqBwG+LaG6YaJtuwzwGSQZ2wsCrxjEhNNjAkKigy3n8teQ==
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.15.2.tgz#3e5419ecd1e40e7405d34093f10befb43f63381a"
+  integrity sha512-J2LqtvFYCzaj8pVYKw8klQXrLLk7TBZmQ4ShlcdkELFKGwGMfevMLneMMRkMgZxotOD9wg497LpC7O8PcvAmfw==
   dependencies:
+    "@types/http-errors" "*"
     "@types/mime" "*"
     "@types/node" "*"
 
@@ -173,9 +179,9 @@ node-ls-files@^0.0.3:
   integrity sha512-OhZBvqbaSdZmAWAHX5xPHWrGep2Q0XDy6Kt3DY0LSWwEoiImWT41zW1oXwlIbQvJHrb3qO3itZRK0zhogLKPqA==
 
 npm-ez@^2.0.2:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/npm-ez/-/npm-ez-2.0.5.tgz#6d30264d15039b1363021690b2877f0114d8e1b4"
-  integrity sha512-GvPt/A3hQx3o7VeXQGcck1FLkNQ51CQiYhpFMYL23sFuG3syMTOphfprCgFd4KJc/pTq/Gf1kQ+nAMAbjVEQzw==
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/npm-ez/-/npm-ez-2.0.6.tgz#02f5e5f7b50394bfad2df24b6493c9323cd77adf"
+  integrity sha512-soFh+X5IsxIGtfEJVacSImTF/5W3YX6axf2EUhS0btw9EoX3Y4me5wxDJ7hA5T/R0ZJ7YJlPq/2IPK6XAaX4hA==
   dependencies:
     "@babel/parser" "^7.20.7"
     ansi-colors "^4.1.3"
@@ -206,10 +212,10 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-req-error@latest:
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/req-error/-/req-error-1.0.26.tgz#9609dd1bec6384b52771984bf31645b7bbc155f9"
-  integrity sha512-CPYvg+TpPEMegNhyidx7vGw0/NVCEDTL8Fjftg2VIhtRrI7f+6E0yhb88y41DjuolM4sp6cPQJgixoXsaxYZcg==
+req-error@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/req-error/-/req-error-2.0.1.tgz#c3889f21396028c9c9db3b15e1d189c8f7b16c5d"
+  integrity sha512-x1U3l18MF/bNLaNCeDIUm/YaQqDlO2IkdFWtvVh4NZ5T/a+ogXZmCi+PMm26YU/MrxqLJJHYr5Eo1WWlhJmk6Q==
 
 resolve@^1.1.6:
   version "1.22.2"
@@ -219,6 +225,11 @@ resolve@^1.1.6:
     is-core-module "^2.11.0"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
+
+rype@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/rype/-/rype-0.0.4.tgz#2ebc65314acdb634e3ecc69f8129f602bbee377c"
+  integrity sha512-cQCyQkegKCQ2SJiG9nEsDymYpW/z4ftgyumQRb3viNMSWkt6v0fZCLcxRcKn0Ypf2wS8/Fe2GweK1NgET2sONg==
 
 shelljs@^0.8.5:
   version "0.8.5"

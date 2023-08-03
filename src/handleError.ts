@@ -1,23 +1,8 @@
-import {
-  FormatJSON,
-  ErrorManager,
-  NotFoundError,
-  ErrorMessagesOptional,
-} from 'req-error'
+import { ErrorManager, ErrorManagerOptions, NotFoundError } from 'req-error'
 import { Express, Request, Response, NextFunction } from 'express'
 
-export default (
-  app: Express,
-  messages?: ErrorMessagesOptional,
-  formatFn?: FormatJSON
-) => {
-  const manager = new ErrorManager(messages)
-
-  const rawStatus = app.response.status
-  app.response.status = function (code: number) {
-    ;(this as any)._statusCodeInitialized = true
-    return rawStatus.bind(this)(code)
-  }
+export default (app: Express, options?: ErrorManagerOptions) => {
+  const manager = new ErrorManager(options)
 
   app.use((req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError())
@@ -26,7 +11,7 @@ export default (
   app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
     try {
       const [message, _statusCode] = manager.getErrorInfo(err)
-      const statusCode = (res as any)._statusCodeInitialized
+      const statusCode = res._statusCodeInitialized
         ? res.statusCode
         : _statusCode
 
@@ -39,14 +24,7 @@ export default (
         return console.warn('Headers already sent!')
       }
 
-      res.status(statusCode).json(
-        formatFn
-          ? formatFn(resObj, statusCode)
-          : {
-              status: statusCode < 500 ? 'fail' : 'error',
-              ...resObj,
-            }
-      )
+      res.status(statusCode).error(resObj)
     } catch (error) {
       res.status(500).json({
         status: "Error inside 'req-error', while handling another error",
