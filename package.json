@@ -1,6 +1,6 @@
 {
   "name": "extrass",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "dev": "npm-ez dev",
@@ -34,7 +34,7 @@
     ".": {
       "require": "./dist-cjs/index.cjs",
       "import": "./dist-mjs/index.mjs",
-      "types": "./dist-mjs/index.mts"
+      "types": "./dist-mjs/index.d.mts"
     }
   }
 }
