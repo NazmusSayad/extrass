@@ -36,5 +36,4 @@ declare global {
 export * from 'rype'
 export * from 'req-error'
 export default extrass
-
 export * from './types'
