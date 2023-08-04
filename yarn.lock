@@ -226,10 +226,10 @@ resolve@^1.1.6:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-rype@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/rype/-/rype-0.0.8.tgz#b762c82f2cd87a2412155fad93d62e6d02fa603f"
-  integrity sha512-ThzE9kKWDmYTfWos8eA1LkRSCnsxvQW4WvCwzibxsgfSrvx7vO5DLNGtO4lhSLeRwKmMTXKAZ4uBYz6RlRrjRA==
+rype@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/rype/-/rype-0.0.9.tgz#1913cf504742a09d81c92c6b8002caaf56a040b6"
+  integrity sha512-wSiewG9fi+vIK9kVW9vquZndE7din8wGkmvsn1D8yBzJIHTXqBwxVsibP0YXqn+FrBXuZU/lJgVCZZCThyyhmw==
 
 shelljs@^0.8.5:
   version "0.8.5"
