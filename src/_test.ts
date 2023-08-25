@@ -1,7 +1,5 @@
 import { env, r } from 'rype'
 
-const str = r.noCheck({ abc: r.o.string() })({})
-
 const result = env({
   a: r.string(),
   b: r.string(),
