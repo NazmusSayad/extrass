@@ -1,9 +1,8 @@
 import { GetErrorInfoHandler } from 'req-error'
-import { RypeTypeError, RypeRequiredError } from 'rype'
 
 const rypeHandlers: GetErrorInfoHandler[] = [
   function (err) {
-    if (err instanceof RypeTypeError || err instanceof RypeRequiredError) {
+    if (err.isRypeClientError) {
       return [err.message, 400]
     }
   },
