@@ -1,9 +1,7 @@
-import { ErrorManager, ErrorManagerOptions, NotFoundError } from 'req-error'
+import { ErrorManager, NotFoundError } from 'req-error'
 import { Express, Request, Response, NextFunction } from 'express'
 
-export default (app: Express, options?: ErrorManagerOptions) => {
-  const manager = new ErrorManager(options)
-
+export default (app: Express, manager: ErrorManager) => {
   app.use((req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError())
   })
@@ -34,6 +32,4 @@ export default (app: Express, options?: ErrorManagerOptions) => {
       })
     }
   })
-
-  return manager
 }

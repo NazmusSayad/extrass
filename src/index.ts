@@ -3,8 +3,8 @@ import {
   DefaultErrorMethod,
   DefaultSuccessMethod,
 } from './types'
-import { ReqError as RequestError } from 'req-error'
 import extrass from './extrass'
+import { ReqError as RequestError } from 'req-error'
 
 try {
   globalThis.ReqError = RequestError
@@ -31,4 +31,8 @@ declare global {
 
 export * from 'req-error'
 export * from './types'
-export default extrass
+export { extrass as createExtrass }
+
+const instance = extrass()
+export default instance.handle
+export const errorManager = instance.errorManager

@@ -40,7 +40,23 @@ check https://www.npmjs.com/package/req-error for that
 
 const app = express()
 
-extrass(app, {
+// ..... Your routes
+
+extrass(app)
+app.listen(/* ... */)
+```
+
+```js
+const express = require('express')
+const { createExtrass } = require('extrass')
+/* After importing this, a class named "ReqError" will be global
+and everything those are exported from req-error package is also exported here
+check https://www.npmjs.com/package/req-error for that
+*/
+
+const app = express()
+
+const extrass = createExtrass({
   // If any strings provided that will be the route for pinging the server
   ping: '/ping',
 
@@ -84,6 +100,7 @@ extrass(app, {
   },
 })
 
+extrass.handle(app)
 app.listen(/* ... */)
 ```
 
