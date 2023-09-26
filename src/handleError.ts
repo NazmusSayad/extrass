@@ -34,4 +34,6 @@ export default (app: Express, options?: ErrorManagerOptions) => {
       })
     }
   })
+
+  return manager
 }
