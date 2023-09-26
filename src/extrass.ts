@@ -21,7 +21,7 @@ export default (app: Express, options: MasterOptions = {}) => {
     app.use(options.ping, pingController)
   }
 
-  handleError(app, {
+  return handleError(app, {
     messages: options.errorMessages,
     handlers: [...(options.errorHandlers || []), ...rypeHandlers],
   })
